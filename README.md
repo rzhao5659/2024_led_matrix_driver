@@ -1,6 +1,6 @@
 # Project Overview
 
-This project drives a LED matrix with WS2812B addressable LEDs.
+This project drives a LED matrix with WS2812B addressable LEDs. The LED matrix was used as a vehicle rear brake light.
 
 The driver is implemented by `ws2812b_driver.c`, which uses the STM32 HAL Library to control WS2812B LEDs, utilizing PWM signals with
 varying duty cycles adjusted via DMA transfers.
