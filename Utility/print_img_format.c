@@ -1,0 +1,34 @@
+#include <stdint.h>
+#include <stdio.h>
+
+// Paste your image (assumed to be already GRB format) here and this code will print it in the format uint8_t[64][3].
+static const uint32_t image[64] = {
+    0x6eff6e, 0x6d5d6f, 0x6d5d6f, 0x000000, 0x000000, 0x6d5d6f, 0x6d5d6f, 0x6eff6e,
+    0x6d5d6f, 0xffffff, 0xffffff, 0x6d5d6f, 0x6d5d6f, 0xffffff, 0xffffff, 0x6d5d6f,
+    0xffffff, 0x000000, 0xffffff, 0xffffff, 0xffffff, 0xffffff, 0x000000, 0xffffff,
+    0xffffff, 0xffffff, 0xffffff, 0x000000, 0x000000, 0xffffff, 0xffffff, 0xffffff,
+    0x000000, 0xffffff, 0xffffff, 0x000000, 0x000000, 0xffffff, 0xffffff, 0x000000,
+    0xffffff, 0x000000, 0x000000, 0x6eff6e, 0x6eff6e, 0x000000, 0x000000, 0xffffff,
+    0xffffff, 0xffffff, 0x000000, 0x6eff6e, 0x6eff6e, 0x000000, 0xffffff, 0xffffff,
+    0xffffff, 0xffffff, 0xffffff, 0x000000, 0x000000, 0xffffff, 0xffffff, 0xffffff
+};
+
+void main() {
+    uint8_t array[64][3];
+    for (int i = 0; i < 64; i++) {
+        array[i][0] = (image[i] >> 16) & 0xFF;
+        array[i][1] = (image[i] >> 8) & 0xFF;
+        array[i][2] = (image[i]) & 0xFF;
+    }
+
+    printf("uint8_t IMAGE[64][3] = {\n");
+    for (int i = 0; i < 8; i++) {
+        printf("\t");
+        for (int j = 0; j < 8; j++) {
+            printf("{0x%x, 0x%x, 0x%x},", array[i * 8 + j][0], array[i * 8 + j][1], array[i * 8 + j][2]);
+        }
+        printf("\n");
+    }
+
+    printf("};\n");
+}
